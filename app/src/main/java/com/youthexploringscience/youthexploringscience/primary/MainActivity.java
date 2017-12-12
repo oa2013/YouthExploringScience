@@ -16,6 +16,8 @@
 
 package com.youthexploringscience.youthexploringscience.primary;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -23,8 +25,13 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.widget.ImageButton;
 
 import com.youthexploringscience.youthexploringscience.R;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Activity serving as app entry point; buttons afford user options of opening the following
@@ -35,17 +42,25 @@ import com.youthexploringscience.youthexploringscience.R;
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
-    private ActionBarDrawerToggle mToggle;
     private NavigationView mNavigationView;
+
+    @BindView(R.id.paylocity_website_button)
+    ImageButton mPaylocityButton;
+    @BindView(R.id.slsc_website_button)
+    ImageButton mSlscButton;
+    @BindView(R.id.student_website_button)
+    ImageButton mStudentButton;
+    @BindView(R.id.yes_website_button)
+    ImageButton mYesButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
 
         setUpNavDrawer();
         setUpNavigationView();
-
     }
 
     /**
@@ -106,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private void setUpNavDrawer() {
         mDrawerLayout = findViewById(R.id.drawer_layout);
-        mToggle = new ActionBarDrawerToggle(this,
+        ActionBarDrawerToggle mToggle = new ActionBarDrawerToggle(this,
                 mDrawerLayout, R.string.nav_layout_open, R.string.nav_layout_close);
 
         mDrawerLayout.addDrawerListener(mToggle);
@@ -115,11 +130,38 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (mToggle.onOptionsItemSelected(item)) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+    /**
+     * next four methods serve as onClickListeners for ImageButtons through Butterknife
+     */
+    @OnClick(R.id.paylocity_website_button)
+    public void launchPaylocitySite() {
+        launchSite(getResources().getString(R.string.link_paylocity));
     }
+
+    @OnClick(R.id.slsc_website_button)
+    public void launchSlscSite() {
+        launchSite(getResources().getString(R.string.link_slsc_website));
+    }
+
+    @OnClick(R.id.student_website_button)
+    public void launchStudentSite() {
+        launchSite(getResources().getString(R.string.link_students));
+    }
+
+    @OnClick(R.id.yes_website_button)
+    public void lauchYesSite() {
+        launchSite(getResources().getString(R.string.link_yes_website));
+    }
+
+    /**
+     * convert string to URI, create intent with it and launch intent
+     *
+     * @param url website which user wishes to navigate to in browser
+     */
+    private void launchSite(String url) {
+        Uri uri = Uri.parse(url);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        startActivity(intent);
+    }
+
 }

@@ -27,4 +27,10 @@
     <string name="content_description_saint_louis_science_center_website_button">Saint Louis Science Center website button</string>
     <string name="content_description_student_website_button">Student websit button</string>
     <string name="content_description_youth_exploring_science_website_button">Youth Exploring Science website button</string>
+
+    <!-- Links-->
+    <string name="link_paylocity">https://login.paylocity.com/Escher/Escher_WebUI/views/login/login.aspx</string>
+    <string name="link_yes_website">http://www.youthexploringscience.com/</string>
+    <string name="link_slsc_website">http://www.slsc.org/</string>
+    <string name="link_students">http://www.youthexploringscience.com/#!resources/obnhz</string>
 </resources>
