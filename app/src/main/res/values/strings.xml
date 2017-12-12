@@ -22,4 +22,9 @@
     <string name="nav_layout_open">open</string>
     <string name="nav_layout_close">close</string>
     <string name="slsc_planetarium_image_description">Saint Louis Science Center Planetarium Image</string>
+    <string name="content_description_yes_logo_image">Yes logo image</string>
+    <string name="content_description_paylocity_website_button">Paylocity website button</string>
+    <string name="content_description_saint_louis_science_center_website_button">Saint Louis Science Center website button</string>
+    <string name="content_description_student_website_button">Student websit button</string>
+    <string name="content_description_youth_exploring_science_website_button">Youth Exploring Science website button</string>
 </resources>

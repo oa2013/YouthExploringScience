@@ -22,61 +22,65 @@
     android:layout_height="match_parent"
     tools:context="com.youthexploringscience.youthexploringscience.primary.MainActivity">
 
+
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/primary_activity_constraint_layout_padding">
+        android:paddingEnd="@dimen/primary_activity_constraint_layout_landscape_padding_start_end"
+        android:paddingStart="@dimen/primary_activity_constraint_layout_landscape_padding_start_end">
 
         <ImageView
             android:id="@+id/yes_logo_image"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/primary_activity_logo_image_height"
+            android:layout_height="@dimen/primary_activity_logo_image_height_landscape"
+            android:layout_marginBottom="@dimen/primary_activity_logo_image_bottom_margin_landscape"
             android:contentDescription="@string/content_description_yes_logo_image"
             android:src="@drawable/yes_logo"
+            app:layout_constraintBottom_toTopOf="@+id/paylocity_website_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
             android:id="@+id/paylocity_website_button"
-            style="@style/primary_activity_button_style"
+            style="@style/primary_activity_button_style_landscape"
             android:contentDescription="@string/content_description_paylocity_website_button"
             android:src="@drawable/pay"
-            app:layout_constraintBottom_toTopOf="@id/student_website_button"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/slsc_website_button"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/yes_logo_image" />
-
-        <ImageButton
-            android:id="@+id/slsc_website_button"
-            style="@style/primary_activity_button_style"
-            android:contentDescription="@string/content_description_saint_louis_science_center_website_button"
-            android:scaleType="center"
-            android:src="@drawable/science_center"
-            app:layout_constraintBottom_toTopOf="@+id/yes_website_button"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/paylocity_website_button"
             app:layout_constraintTop_toBottomOf="@id/yes_logo_image" />
 
         <ImageButton
+            android:id="@+id/slsc_website_button"
+            style="@style/primary_activity_button_style_landscape"
+            android:contentDescription="@string/content_description_saint_louis_science_center_website_button"
+            android:src="@drawable/science_center"
+            app:layout_constraintBottom_toBottomOf="@+id/paylocity_website_button"
+            app:layout_constraintEnd_toStartOf="@id/student_website_button"
+            app:layout_constraintStart_toEndOf="@id/paylocity_website_button"
+            app:layout_constraintTop_toTopOf="@+id/paylocity_website_button" />
+
+        <ImageButton
             android:id="@+id/student_website_button"
-            style="@style/primary_activity_button_style"
+            style="@style/primary_activity_button_style_landscape"
             android:contentDescription="@string/content_description_student_website_button"
             android:src="@drawable/student"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/yes_website_button"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/paylocity_website_button" />
+            app:layout_constraintBottom_toBottomOf="@+id/slsc_website_button"
+            app:layout_constraintEnd_toStartOf="@id/yes_website_button"
+            app:layout_constraintStart_toEndOf="@id/slsc_website_button"
+            app:layout_constraintTop_toTopOf="@+id/slsc_website_button" />
 
         <ImageButton
             android:id="@+id/yes_website_button"
-            style="@style/primary_activity_button_style"
+            style="@style/primary_activity_button_style_landscape"
             android:contentDescription="@string/content_description_youth_exploring_science_website_button"
             android:src="@drawable/yes_circle"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/student_website_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/student_website_button"
-            app:layout_constraintTop_toBottomOf="@id/slsc_website_button" />
+            app:layout_constraintTop_toTopOf="@+id/student_website_button" />
+
 
     </android.support.constraint.ConstraintLayout>
 
