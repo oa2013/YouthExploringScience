@@ -5,6 +5,9 @@
 
 Android Application for Youth Exploring Science student interns.  App includes student resources, event schedule and contact list for Youth Exploring Science staff.
 
+
+
+
 ## License
 ---
 
