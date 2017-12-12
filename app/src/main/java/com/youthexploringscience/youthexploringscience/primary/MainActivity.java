@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.youthexploringscience.youthexploringscience;
+package com.youthexploringscience.youthexploringscience.primary;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -23,6 +23,8 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+
+import com.youthexploringscience.youthexploringscience.R;
 
 /**
  * Activity serving as app entry point; buttons afford user options of opening the following
@@ -115,6 +117,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        if (mToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 }
