@@ -27,12 +27,13 @@
         android:layout_height="match_parent"
         android:padding="@dimen/primary_activity_constraint_layout_padding">
 
+        <!-- TODO replace stock image with YES logo -->
         <ImageView
             android:id="@+id/yes_logo_image"
             android:layout_width="match_parent"
             android:layout_height="@dimen/primary_activity_logo_image_height"
             android:contentDescription="@string/content_description_yes_logo_image"
-            android:src="@drawable/yes_logo"
+            android:src="@drawable/student"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -47,12 +48,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/yes_logo_image" />
 
+        <!-- TODO replace stock image with SLSC image -->
         <ImageButton
             android:id="@+id/slsc_website_button"
             style="@style/primary_activity_button_style"
             android:contentDescription="@string/content_description_saint_louis_science_center_website_button"
             android:scaleType="center"
-            android:src="@drawable/science_center"
+            android:src="@drawable/student"
             app:layout_constraintBottom_toTopOf="@+id/yes_website_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/paylocity_website_button"
@@ -68,11 +70,12 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/paylocity_website_button" />
 
+        <!-- TODO replace stock image with YES logo image -->
         <ImageButton
             android:id="@+id/yes_website_button"
             style="@style/primary_activity_button_style"
             android:contentDescription="@string/content_description_youth_exploring_science_website_button"
-            android:src="@drawable/yes_circle"
+            android:src="@drawable/student"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/student_website_button"

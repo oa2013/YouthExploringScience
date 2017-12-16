@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
     private NavigationView mNavigationView;
+    private ActionBarDrawerToggle mToggle;
 
     @BindView(R.id.paylocity_website_button)
     ImageButton mPaylocityButton;
@@ -121,13 +122,27 @@ public class MainActivity extends AppCompatActivity {
      */
     private void setUpNavDrawer() {
         mDrawerLayout = findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle mToggle = new ActionBarDrawerToggle(this,
+        mToggle = new ActionBarDrawerToggle(this,
                 mDrawerLayout, R.string.nav_layout_open, R.string.nav_layout_close);
 
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if(getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+    }
 
+    /**
+     * opens/closes NavigationDrawer
+     * @param item menu hamburger icon controlling NavDrawer
+     * @return true if hamburger icon was clicked
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (mToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     /**
