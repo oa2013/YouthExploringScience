@@ -3,6 +3,8 @@
     package="com.youthexploringscience.youthexploringscience">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <!-- needs ACCESS_NETWORK_STATE to see if there is a network connection prior to API query -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"

@@ -16,7 +16,11 @@
 
 package com.youthexploringscience.youthexploringscience.primary;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -24,10 +28,13 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.youthexploringscience.youthexploringscience.R;
+import com.youthexploringscience.youthexploringscience.utils.NetworkUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -40,6 +47,8 @@ import butterknife.OnClick;
  */
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final String TAG = MainActivity.class.getName();
 
     private DrawerLayout mDrawerLayout;
     private NavigationView mNavigationView;
@@ -127,13 +136,14 @@ public class MainActivity extends AppCompatActivity {
 
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
-        if(getSupportActionBar() != null) {
+        if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
     }
 
     /**
      * opens/closes NavigationDrawer
+     *
      * @param item menu hamburger icon controlling NavDrawer
      * @return true if hamburger icon was clicked
      */
@@ -153,16 +163,25 @@ public class MainActivity extends AppCompatActivity {
         launchSite(getResources().getString(R.string.link_paylocity));
     }
 
+    /**
+     * launches Saint Louis Science Center website in web browser
+     */
     @OnClick(R.id.slsc_website_button)
     public void launchSlscSite() {
         launchSite(getResources().getString(R.string.link_slsc_website));
     }
 
+    /**
+     * launches YES student resources website in web browser
+     */
     @OnClick(R.id.student_website_button)
     public void launchStudentSite() {
         launchSite(getResources().getString(R.string.link_students));
     }
 
+    /**
+     * launches Saint Youth Exploring Science website in web browser
+     */
     @OnClick(R.id.yes_website_button)
     public void lauchYesSite() {
         launchSite(getResources().getString(R.string.link_yes_website));
@@ -174,9 +193,26 @@ public class MainActivity extends AppCompatActivity {
      * @param url website which user wishes to navigate to in browser
      */
     private void launchSite(String url) {
-        Uri uri = Uri.parse(url);
-        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-        startActivity(intent);
+        //ensure internet connection is available
+        if (NetworkUtils.haveInternetConnection(this)) {
+            //convert string to URI
+            Uri uri = Uri.parse(url);
+            //create intent to launch URI in web browser
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+
+            //resove intent to ensure there is an installed app which can handle intent request
+            PackageManager packageManager = this.getPackageManager();
+            if (intent.resolveActivity(packageManager) != null) {
+                startActivity(intent);
+            } else {
+                Log.d(TAG, "No App available to handle action");
+            }
+        } else {
+            //TODO replace this toast with a more descriptive notification to user
+            Toast.makeText(this, "No internet connection available", Toast.LENGTH_LONG).show();
+        }
     }
 
+
 }
+

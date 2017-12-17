@@ -53,7 +53,6 @@
             android:id="@+id/slsc_website_button"
             style="@style/primary_activity_button_style"
             android:contentDescription="@string/content_description_saint_louis_science_center_website_button"
-            android:scaleType="center"
             android:src="@drawable/student"
             app:layout_constraintBottom_toTopOf="@+id/yes_website_button"
             app:layout_constraintEnd_toEndOf="parent"
