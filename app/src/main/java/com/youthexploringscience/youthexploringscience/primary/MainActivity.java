@@ -31,8 +31,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.youthexploringscience.youthexploringscience.R;
 import com.youthexploringscience.youthexploringscience.utils.NetworkUtils;
 
@@ -54,6 +56,9 @@ public class MainActivity extends AppCompatActivity {
     private NavigationView mNavigationView;
     private ActionBarDrawerToggle mToggle;
 
+    @BindView(R.id.yes_logo_image)
+    ImageView mYesImage;
+
     @BindView(R.id.paylocity_website_button)
     ImageButton mPaylocityButton;
     @BindView(R.id.slsc_website_button)
@@ -71,6 +76,36 @@ public class MainActivity extends AppCompatActivity {
 
         setUpNavDrawer();
         setUpNavigationView();
+
+        loadImages();
+
+
+    }
+
+    /**
+     * load all images into ImageViews and ImageButtons
+     */
+    private void loadImages() {
+
+        Glide.with(this)
+                .load(R.drawable.yes_logo)
+                .into(mYesImage);
+
+        Glide.with(this)
+                .load(R.drawable.pay)
+                .into(mPaylocityButton);
+
+        Glide.with(this)
+                .load(R.drawable.science_center)
+                .into(mSlscButton);
+
+        Glide.with(this)
+                .load(R.drawable.student)
+                .into(mStudentButton);
+
+        Glide.with(this)
+                .load(R.drawable.yes_circle)
+                .into(mYesButton);
     }
 
     /**
@@ -79,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private void setUpNavigationView() {
         mNavigationView = findViewById(R.id.navigation_view);
+
         mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -212,7 +248,6 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "No internet connection available", Toast.LENGTH_LONG).show();
         }
     }
-
 
 }
 
