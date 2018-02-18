@@ -3,7 +3,7 @@
     <dimen name="primary_activity_button_size_landscape">100dp</dimen>
     <dimen name="primary_activity_logo_image_height_landscape">120dp</dimen>
     <dimen name="primary_activity_logo_image_bottom_margin_landscape">16dp</dimen>
-    <dimen name="primary_activity_constraint_layout_landscape_padding_start_end">32dp</dimen>
-    <dimen name="primary_activity_logo_image_height">180dp</dimen>
+    <dimen name="primary_activity_constraint_layout_landscape_padding_start_end">0dp</dimen>
+    <dimen name="primary_activity_logo_image_height">100dp</dimen>
     <dimen name="primary_activity_constraint_layout_padding">8dp</dimen>
 </resources>

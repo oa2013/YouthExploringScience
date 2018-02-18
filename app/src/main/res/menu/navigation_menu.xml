@@ -13,23 +13,36 @@
 ~ See the License for the specific language governing permissions and
 ~ limitations under the License.
 -->
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/navigation_menu_layout">
 
-    <item android:id="@+id/nav_home"
-        android:icon="@drawable/ic_home_black_24dp"
-        android:checked="true"
-        android:title="@string/nav_drawer_item_home"/>
+    <item
+        android:id="@+id/nav_home"
+        android:enabled="true"
+        android:icon="@drawable/ic_home_white_48dp"
+        android:title="@string/nav_drawer_item_home"
+        android:visible="true"
+        />
 
-    <item android:id="@+id/nav_events"
-        android:icon="@drawable/ic_whatshot_black_24dp"
-        android:title="@string/nav_drawer_item_events"/>
+    <item
+        android:id="@+id/nav_events"
+        android:enabled="true"
+        android:icon="@drawable/ic_lightbulb_outline_white_48dp"
+        android:title="@string/nav_drawer_item_events"
+        android:visible="true" />
 
-    <item android:id="@+id/nav_contacts"
-        android:icon="@drawable/ic_people_black_24dp"
-        android:title="@string/nav_drawer_item_contacts"/>
+    <item
+        android:id="@+id/nav_contacts"
+        android:enabled="true"
+        android:icon="@drawable/ic_people_white_48dp"
+        android:title="@string/nav_drawer_item_contacts"
+        android:visible="true" />
 
-    <item android:id="@+id/nav_settings"
-        android:icon="@drawable/ic_settings_black_24dp"
-        android:title="@string/nav_drawer_item_settings"/>
+    <item
+        android:id="@+id/nav_settings"
+        android:enabled="true"
+        android:icon="@drawable/ic_settings_white_48dp"
+        android:title="@string/nav_drawer_item_settings"
+        android:visible="true" />
 
 </menu>

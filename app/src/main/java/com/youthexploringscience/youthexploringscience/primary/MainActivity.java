@@ -16,9 +16,14 @@
 
 package com.youthexploringscience.youthexploringscience.primary;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -26,8 +31,10 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ImageButton;
@@ -52,11 +59,15 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getName();
 
-    private DrawerLayout mDrawerLayout;
-    private NavigationView mNavigationView;
+    @BindView(R.id.drawer_layout)
+    DrawerLayout mDrawerLayout;
+
+    @BindView(R.id.navigation_view)
+    NavigationView mNavigationView;
+
     private ActionBarDrawerToggle mToggle;
 
-    @BindView(R.id.yes_logo_image)
+    @BindView(R.id.yes_logo)
     ImageView mYesImage;
 
     @BindView(R.id.paylocity_website_button)
@@ -74,6 +85,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
+        ActionBar actionBar = this.getSupportActionBar();
+        ColorDrawable colorDrawable = new ColorDrawable(getResources().getColor(R.color.colorPrimaryDark));
+        actionBar.setBackgroundDrawable(colorDrawable);
+        actionBar.setTitle(Html.fromHtml("<font color='#ffffff'>Youth Exploring Science</font>"));
+
         setUpNavDrawer();
         setUpNavigationView();
 
@@ -88,23 +104,23 @@ public class MainActivity extends AppCompatActivity {
     private void loadImages() {
 
         Glide.with(this)
-                .load(R.drawable.yes_logo)
+                .load(R.drawable.ic_yeslogo)
                 .into(mYesImage);
 
         Glide.with(this)
-                .load(R.drawable.pay)
+                .load(R.drawable.ic_paylocity)
                 .into(mPaylocityButton);
 
         Glide.with(this)
-                .load(R.drawable.science_center)
+                .load(R.drawable.ic_stlouis)
                 .into(mSlscButton);
 
         Glide.with(this)
-                .load(R.drawable.student)
+                .load(R.drawable.ic_graduation)
                 .into(mStudentButton);
 
         Glide.with(this)
-                .load(R.drawable.yes_circle)
+                .load(R.drawable.ic_yescircle)
                 .into(mYesButton);
     }
 
@@ -167,11 +183,15 @@ public class MainActivity extends AppCompatActivity {
      */
     private void setUpNavDrawer() {
         mDrawerLayout = findViewById(R.id.drawer_layout);
+
         mToggle = new ActionBarDrawerToggle(this,
                 mDrawerLayout, R.string.nav_layout_open, R.string.nav_layout_close);
 
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
+
+        mToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.colorPrimary));
+
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
