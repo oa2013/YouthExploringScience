@@ -17,7 +17,6 @@
 package com.youthexploringscience.youthexploringscience.db;
 
 public interface Contact {
-    String getContactId();
     String getContactName();
     String getContactTitle();
     String getContactPhone();
