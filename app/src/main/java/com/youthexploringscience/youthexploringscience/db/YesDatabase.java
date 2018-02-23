@@ -16,7 +16,36 @@
 
 package com.youthexploringscience.youthexploringscience.db;
 
+import android.arch.persistence.room.Database;
+import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
+import android.content.Context;
 
-public abstract class YesDatabase extends RoomDatabase{
+import com.youthexploringscience.youthexploringscience.db.dao.ContactDao;
+import com.youthexploringscience.youthexploringscience.db.dao.EventDao;
+import com.youthexploringscience.youthexploringscience.db.entity.ContactEntity;
+import com.youthexploringscience.youthexploringscience.db.entity.EventEntity;
+
+@Database(entities = {ContactEntity.class, EventEntity.class}, version = 1)
+public abstract class YesDatabase extends RoomDatabase {
+    public static final String DATABASE_NAME = "yes_database";
+    private static YesDatabase INSTANCE;
+
+    public abstract ContactDao contactDao();
+
+    public abstract EventDao eventDao();
+
+    public static YesDatabase getInstance(final Context context) {
+        if (INSTANCE == null) {
+            synchronized (YesDatabase.class) {
+                if (INSTANCE == null) {
+                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
+                            YesDatabase.class, DATABASE_NAME)
+                            .fallbackToDestructiveMigration()
+                            .build();
+                }
+            }
+        }
+        return INSTANCE;
+    }
 }
