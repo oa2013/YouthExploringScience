@@ -94,8 +94,6 @@ public class MainActivity extends AppCompatActivity {
         setUpNavigationView();
 
         loadImages();
-
-
     }
 
     /**
@@ -256,7 +254,7 @@ public class MainActivity extends AppCompatActivity {
             //create intent to launch URI in web browser
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
 
-            //resove intent to ensure there is an installed app which can handle intent request
+            //resolve intent to ensure there is an installed app which can handle intent request
             PackageManager packageManager = this.getPackageManager();
             if (intent.resolveActivity(packageManager) != null) {
                 startActivity(intent);

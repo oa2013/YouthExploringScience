@@ -18,12 +18,14 @@ package com.youthexploringscience.youthexploringscience.db.entity;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
 
 import com.youthexploringscience.youthexploringscience.db.Contact;
 
 @Entity(tableName = "contacts")
 public class ContactEntity implements Contact {
     @PrimaryKey
+    @NonNull
     private String contactName;
     private String contactTitle;
     private String contactPhone;
@@ -31,15 +33,12 @@ public class ContactEntity implements Contact {
     private String contactImageLink;
 
 
-    public ContactEntity(String contactName, String contactTitle, String contactPhone, String contactEmail, String contactImageLink) {
+    public ContactEntity(@NonNull String contactName, String contactTitle, String contactPhone, String contactEmail, String contactImageLink) {
         this.contactName = contactName;
         this.contactTitle = contactTitle;
         this.contactPhone = contactPhone;
         this.contactEmail = contactEmail;
         this.contactImageLink = contactImageLink;
-    }
-
-    public ContactEntity() {
     }
 
     @Override

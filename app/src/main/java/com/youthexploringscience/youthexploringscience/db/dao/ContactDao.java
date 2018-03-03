@@ -38,6 +38,6 @@ public interface ContactDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     public void insertContacts(ContactEntity... contacts);
 
-    @Query("DELETE FROM contaccts")
+    @Query("DELETE FROM contacts")
     public void deleteAllContacts();
 }

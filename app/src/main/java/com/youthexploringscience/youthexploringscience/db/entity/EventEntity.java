@@ -18,6 +18,7 @@ package com.youthexploringscience.youthexploringscience.db.entity;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
 
 import com.youthexploringscience.youthexploringscience.db.Event;
 
@@ -25,6 +26,7 @@ import com.youthexploringscience.youthexploringscience.db.Event;
 public class EventEntity implements Event {
 
     @PrimaryKey
+    @NonNull
     private String eventId;
     private String eventSummary;
     private String eventHtmlLink;
@@ -33,7 +35,7 @@ public class EventEntity implements Event {
     private int dateTimeStart;
     private int dateTimeEnd;
 
-    public EventEntity(String eventId, String eventSummary, String eventHtmlLink, String eventDescription, String eventLocation, int dateTimeStart, int dateTimeEnd) {
+    public EventEntity(@NonNull String eventId, String eventSummary, String eventHtmlLink, String eventDescription, String eventLocation, int dateTimeStart, int dateTimeEnd) {
         this.eventId = eventId;
         this.eventSummary = eventSummary;
         this.eventHtmlLink = eventHtmlLink;
@@ -41,9 +43,6 @@ public class EventEntity implements Event {
         this.eventLocation = eventLocation;
         this.dateTimeStart = dateTimeStart;
         this.dateTimeEnd = dateTimeEnd;
-    }
-
-    public EventEntity() {
     }
 
     @Override
