@@ -18,6 +18,7 @@ package com.youthexploringscience.youthexploringscience.db.dao;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
+import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
@@ -33,11 +34,17 @@ public interface ContactDao {
     LiveData<List<ContactEntity>> loadAllContacts();
 
     @Query("SELECT * FROM contacts WHERE contactName = :contactName")
-    ContactEntity loadContact(String contactName);
+    LiveData<ContactEntity> loadContact(String contactName);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     public void insertContacts(ContactEntity... contacts);
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    public void insertContact(ContactEntity contactEntity);
+
     @Query("DELETE FROM contacts")
     public void deleteAllContacts();
+
+    @Delete
+    public void deleteContact(ContactEntity contactEntity);
 }
