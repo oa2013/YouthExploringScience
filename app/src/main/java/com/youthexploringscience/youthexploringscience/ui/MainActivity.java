@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.youthexploringscience.youthexploringscience.primary;
+package com.youthexploringscience.youthexploringscience.ui;
 
 import android.app.Activity;
 import android.content.Context;
