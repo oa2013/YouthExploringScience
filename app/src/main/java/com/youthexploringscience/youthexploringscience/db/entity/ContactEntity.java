@@ -18,6 +18,7 @@ package com.youthexploringscience.youthexploringscience.db.entity;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 
 import com.youthexploringscience.youthexploringscience.db.Contact;

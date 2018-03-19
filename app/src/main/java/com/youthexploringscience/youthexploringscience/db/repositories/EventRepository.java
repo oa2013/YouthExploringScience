@@ -31,13 +31,13 @@ public class EventRepository {
     private EventDao mEventDao;
     private LiveData<List<EventEntity>> mAllEvents;
 
-    EventRepository(Application application) {
+    public EventRepository(Application application) {
         YesDatabase database = YesDatabase.getInstance(application);
         mEventDao = database.eventDao();
         mAllEvents = mEventDao.loadAllEvents();
     }
 
-    LiveData<List<EventEntity>> loadAllEvents() {
+    public LiveData<List<EventEntity>> loadAllEvents() {
         return mAllEvents;
     }
 

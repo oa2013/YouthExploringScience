@@ -30,13 +30,13 @@ public class ContactRepository {
     private ContactDao mContactDao;
     private LiveData<List<ContactEntity>> mAllContacts;
 
-    ContactRepository(Application application) {
+    public ContactRepository(Application application) {
         YesDatabase database = YesDatabase.getInstance(application);
         mContactDao = database.contactDao();
         mAllContacts = mContactDao.loadAllContacts();
     }
 
-    LiveData<List<ContactEntity>> loadAllContacts() {
+    public LiveData<List<ContactEntity>> loadAllContacts() {
         return mAllContacts;
     }
 
