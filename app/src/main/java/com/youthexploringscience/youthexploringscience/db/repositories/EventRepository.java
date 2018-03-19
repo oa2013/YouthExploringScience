@@ -42,6 +42,14 @@ public class EventRepository {
     }
 
 
+    //TODO:  retrieve cloud data from Google Calendar and sync with db
+    /*  Research whether Calendar API push notifications can be made to app
+        1. Using JobScheduler (conditions:  on wifi;  period: daily? ask Jesse)
+            * delete all events from local YesDatabase
+            * retrieve all contacts from Google Sheet API
+            * serialize json to pojo collection (or save to db individually? research Gson)
+            * save pojo collection to db
+    */
 
 
 }

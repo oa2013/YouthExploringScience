@@ -40,6 +40,16 @@ public class ContactRepository {
         return mAllContacts;
     }
 
-    //TODO:  retrieve cloud data from Google Sheet and sync with db
 
+    //TODO:  retrieve cloud data from Google Sheet and sync with db
+    /*  1. Using JobScheduler (conditions:  on wifi;  period: weekly? ask Jesse)
+            *   query Google Sheets API & get modifiedTime field compare with lastUpdate
+            *(where to store locally?) https://developers.google.com/drive/v3/reference/files/get
+        2.  If modifiedTime == lastUpdate do nothing
+        3.  if modifiedTime > lastUpdate
+            * delete all contacts from local YesDatabase
+            * retrieve all contacts from Google Sheet API
+            * serialize json to pojo collection (or save to db individually? research Gson)
+            * save pojo collection to db
+    */
 }
