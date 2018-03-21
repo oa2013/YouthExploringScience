@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground">
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineH"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.0" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.35" />
+
+    <ImageButton
+        android:id="@+id/slsc_website_button"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/stlouis_landscape"
+        android:layout_marginBottom="2dp"
+        android:background="@color/colorBackground"
+        android:contentDescription="@string/content_description_saint_louis_science_center_website_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/paylocity_website_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/student_website_button"
+        app:layout_constraintVertical_bias="0.348"
+        app:srcCompat="@drawable/ic_stlouis" />
+
+    <ImageButton
+        android:id="@+id/student_website_button"
+        android:layout_width="303dp"
+        android:layout_height="@dimen/studentsite_landscape"
+        android:background="@color/colorBackground"
+        android:contentDescription="@string/content_description_student_website_button"
+        app:layout_constraintEnd_toStartOf="@+id/yes_website_button"
+        app:layout_constraintHorizontal_bias="0.375"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_graduation" />
+
+    <ImageButton
+        android:id="@+id/yes_website_button"
+        android:layout_width="293dp"
+        android:layout_height="99dp"
+        android:paddingBottom="6dp"
+        android:background="@color/colorBackground"
+        android:contentDescription="@string/content_description_youth_exploring_science_website_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_yescircle_small"
+         />
+
+    <ImageButton
+        android:id="@+id/paylocity_website_button"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/paylocity_landscape"
+        android:layout_marginBottom="66dp"
+        android:background="@color/colorBackground"
+        android:contentDescription="@string/content_description_paylocity_website_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/yes_website_button"
+        app:srcCompat="@drawable/ic_paylocity" />
+
+</android.support.constraint.ConstraintLayout>

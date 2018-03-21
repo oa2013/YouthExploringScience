@@ -29,7 +29,9 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -59,25 +61,11 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getName();
 
-    @BindView(R.id.drawer_layout)
-    DrawerLayout mDrawerLayout;
-
-    @BindView(R.id.navigation_view)
-    NavigationView mNavigationView;
-
     private ActionBarDrawerToggle mToggle;
-
-    @BindView(R.id.yes_logo)
-    ImageView mYesImage;
-
-    @BindView(R.id.paylocity_website_button)
-    ImageButton mPaylocityButton;
-    @BindView(R.id.slsc_website_button)
-    ImageButton mSlscButton;
-    @BindView(R.id.student_website_button)
-    ImageButton mStudentButton;
-    @BindView(R.id.yes_website_button)
-    ImageButton mYesButton;
+    private BottomNavigationView mBottomNavigationView;
+    private SectionAdapter mSectionAdapter;
+    private ViewPager mViewPager;
+    private MenuItem prevMenuItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,182 +78,72 @@ public class MainActivity extends AppCompatActivity {
         actionBar.setBackgroundDrawable(colorDrawable);
         actionBar.setTitle(Html.fromHtml("<font color='#ffffff'>Youth Exploring Science</font>"));
 
-        setUpNavDrawer();
-        setUpNavigationView();
+        mSectionAdapter = new SectionAdapter(getSupportFragmentManager());
 
-        loadImages();
-    }
+        // Set up the ViewPager with the section adapter.
+        mViewPager = (ViewPager) findViewById(R.id.viewpager);
+        setupViewPager(mViewPager);
 
-    /**
-     * load all images into ImageViews and ImageButtons
-     */
-    private void loadImages() {
+        mBottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation_view);
 
-        Glide.with(this)
-                .load(R.drawable.ic_yeslogo)
-                .into(mYesImage);
+        mBottomNavigationView.setOnNavigationItemSelectedListener(
+                new BottomNavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.nav_home:
+                                mViewPager.setCurrentItem(0);
 
-        Glide.with(this)
-                .load(R.drawable.ic_paylocity)
-                .into(mPaylocityButton);
+                                break;
+                            case R.id.nav_events:
+                                mViewPager.setCurrentItem(1);
 
-        Glide.with(this)
-                .load(R.drawable.ic_stlouis)
-                .into(mSlscButton);
+                                break;
+                            case R.id.nav_settings:
+                                mViewPager.setCurrentItem(2);
 
-        Glide.with(this)
-                .load(R.drawable.ic_graduation)
-                .into(mStudentButton);
+                                break;
+                        }
+                        return false;
+                    }
+                });
 
-        Glide.with(this)
-                .load(R.drawable.ic_yescircle)
-                .into(mYesButton);
-    }
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
-    /**
-     * initializes NavigationView & sets an ItemSelectedListener; handles click events
-     * for each item in NavigationView menu
-     */
-    private void setUpNavigationView() {
-        mNavigationView = findViewById(R.id.navigation_view);
-
-        mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
 
-                switch (item.getItemId()) {
-                    case R.id.nav_home:
-                        if (item.isChecked()) {
-                            return true;
-                        }
-                        //TODO if main activity is in back stack bring it to top of stack.
-                        // Otherwise, launch new main activity instance
-                        break;
-                    case R.id.nav_events:
-                        if (item.isChecked()) {
-                            return true;
-                        }
-                        //TODO launch new events activity
-                        break;
-                    case R.id.nav_contacts:
-                        //TODO  launch new contacts activity
-                        break;
-                    case R.id.nav_settings:
-                        //TODO launch preferences settings
-                        break;
+            @Override
+            public void onPageSelected(int position) {
+                if (prevMenuItem != null) {
+                    prevMenuItem.setChecked(false);
                 }
-                adjustCheckedNavItems(item);
-                mDrawerLayout.closeDrawers();
-                return true;
+                else
+                {
+                    mBottomNavigationView.getMenu().getItem(0).setChecked(false);
+                }
+
+                mBottomNavigationView.getMenu().getItem(position).setChecked(true);
+                prevMenuItem = mBottomNavigationView.getMenu().getItem(position);
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
             }
         });
+
+        setupViewPager(mViewPager);
     }
 
-    /**
-     * Removes checked = true status for each MenuItem then sets
-     * checked = true for item passed as parameter
-     *
-     * @param item menu item selected
-     */
-    private void adjustCheckedNavItems(MenuItem item) {
-        int size = mNavigationView.getMenu().size();
-        for (int i = 0; i < size; i++) {
-            mNavigationView.getMenu().getItem(i).setChecked(false);
-        }
-        item.setChecked(true);
+    private void setupViewPager(ViewPager viewPager) {
+        SectionAdapter adapter = new SectionAdapter(getSupportFragmentManager());
+        adapter.addFragment(new HomeFragment(), "Home");
+        adapter.addFragment(new CalendarFragment(), "Calendar");
+        adapter.addFragment(new SettingsFragment(), "Settings");
+        viewPager.setAdapter(adapter);
     }
-
-    /**
-     * initialize DrawerLayout and set ActionBarDrawerToggle as listener to
-     * sync DrawerLayout state with ActionBar
-     */
-    private void setUpNavDrawer() {
-        mDrawerLayout = findViewById(R.id.drawer_layout);
-
-        mToggle = new ActionBarDrawerToggle(this,
-                mDrawerLayout, R.string.nav_layout_open, R.string.nav_layout_close);
-
-        mDrawerLayout.addDrawerListener(mToggle);
-        mToggle.syncState();
-
-        mToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.colorPrimary));
-
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }
-    }
-
-    /**
-     * opens/closes NavigationDrawer
-     *
-     * @param item menu hamburger icon controlling NavDrawer
-     * @return true if hamburger icon was clicked
-     */
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (mToggle.onOptionsItemSelected(item)) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    /**
-     * next four methods serve as onClickListeners for ImageButtons through Butterknife
-     */
-    @OnClick(R.id.paylocity_website_button)
-    public void launchPaylocitySite() {
-        launchSite(getResources().getString(R.string.link_paylocity));
-    }
-
-    /**
-     * launches Saint Louis Science Center website in web browser
-     */
-    @OnClick(R.id.slsc_website_button)
-    public void launchSlscSite() {
-        launchSite(getResources().getString(R.string.link_slsc_website));
-    }
-
-    /**
-     * launches YES student resources website in web browser
-     */
-    @OnClick(R.id.student_website_button)
-    public void launchStudentSite() {
-        launchSite(getResources().getString(R.string.link_students));
-    }
-
-    /**
-     * launches Saint Youth Exploring Science website in web browser
-     */
-    @OnClick(R.id.yes_website_button)
-    public void lauchYesSite() {
-        launchSite(getResources().getString(R.string.link_yes_website));
-    }
-
-    /**
-     * convert string to URI, create intent with it and launch intent
-     *
-     * @param url website which user wishes to navigate to in browser
-     */
-    private void launchSite(String url) {
-        //ensure internet connection is available
-        if (NetworkUtils.haveInternetConnection(this)) {
-            //convert string to URI
-            Uri uri = Uri.parse(url);
-            //create intent to launch URI in web browser
-            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-
-            //resolve intent to ensure there is an installed app which can handle intent request
-            PackageManager packageManager = this.getPackageManager();
-            if (intent.resolveActivity(packageManager) != null) {
-                startActivity(intent);
-            } else {
-                Log.d(TAG, "No App available to handle action");
-            }
-        } else {
-            //TODO replace this toast with a more descriptive notification to user
-            Toast.makeText(this, "No internet connection available", Toast.LENGTH_LONG).show();
-        }
-    }
-
 }
 

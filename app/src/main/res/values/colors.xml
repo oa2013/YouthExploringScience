@@ -18,4 +18,5 @@
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#ff0000</color>
     <color name="colorBackground">#424242</color>
+    <color name="colorBottomnNav">#ae0000</color>
 </resources>

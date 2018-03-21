@@ -32,13 +32,6 @@
         android:visible="true" />
 
     <item
-        android:id="@+id/nav_contacts"
-        android:enabled="true"
-        android:icon="@drawable/ic_people_white_48dp"
-        android:title="@string/nav_drawer_item_contacts"
-        android:visible="true" />
-
-    <item
         android:id="@+id/nav_settings"
         android:enabled="true"
         android:icon="@drawable/ic_settings_white_48dp"
