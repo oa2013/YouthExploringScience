@@ -38,7 +38,7 @@
 
     <ImageButton
         android:id="@+id/student_website_button"
-        android:layout_width="303dp"
+        android:layout_width="wrap_content"
         android:layout_height="@dimen/studentsite_landscape"
         android:background="@color/colorBackground"
         android:contentDescription="@string/content_description_student_website_button"
@@ -50,8 +50,8 @@
 
     <ImageButton
         android:id="@+id/yes_website_button"
-        android:layout_width="293dp"
-        android:layout_height="99dp"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/yes_logo_landscape"
         android:paddingBottom="6dp"
         android:background="@color/colorBackground"
         android:contentDescription="@string/content_description_youth_exploring_science_website_button"
