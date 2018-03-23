@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="yes_logo_landscape">99dp</dimen>
-    <dimen name="paylocity_landscape">100dp</dimen>
-    <dimen name="studentsite_landscape">80dp</dimen>
-    <dimen name="stlouis_landscape">80dp</dimen>
+    <dimen name="yes_logo_landscape_height">120dp</dimen>
+    <dimen name="paylocity_landscape_height">100dp</dimen>
+    <dimen name="studentsite_landscape_height">100dp</dimen>
+    <dimen name="stlouis_landscape_height">100dp</dimen>
+
+    <dimen name="yes_logo_landscape_width">140dp</dimen>
+    <dimen name="paylocity_landscape_width">200dp</dimen>
+    <dimen name="studentsite_landscape_width">100dp</dimen>
+    <dimen name="stlouis_landscape_width">140dp</dimen>
 
     <dimen name="topbanner_portrait">150dp</dimen>
     <dimen name="yes_logo_portrait">100dp</dimen>
