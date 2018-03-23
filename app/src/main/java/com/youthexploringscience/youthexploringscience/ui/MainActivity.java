@@ -59,6 +59,9 @@ import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String HOME = "Home";
+    private static final String CALENDAR = "Calendar";
+    private static final String SETTINGS = "Settings";
     private static final String TAG = MainActivity.class.getName();
 
     private ActionBarDrawerToggle mToggle;
@@ -140,9 +143,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         SectionAdapter adapter = new SectionAdapter(getSupportFragmentManager());
-        adapter.addFragment(new HomeFragment(), "Home");
-        adapter.addFragment(new CalendarFragment(), "Calendar");
-        adapter.addFragment(new SettingsFragment(), "Settings");
+        adapter.addFragment(new HomeFragment(), HOME);
+        adapter.addFragment(new CalendarFragment(), CALENDAR);
+        adapter.addFragment(new SettingsFragment(), SETTINGS);
         viewPager.setAdapter(adapter);
     }
 }
